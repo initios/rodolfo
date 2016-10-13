@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+root_path = File.dirname __dir__
+
+require 'slop'
+require File.join(root_path, 'lib', 'rodolfo.rb')
+
+opts = Slop.parse do |o|
+  o.string '-t', '--template', 'template name'
+  o.on '--version', 'print the version' do
+    puts Slop::VERSION
+    exit
+  end
+end
+
+puts opts
