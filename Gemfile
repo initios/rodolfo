@@ -6,4 +6,5 @@ gem 'rake', '~> 11.3.0'
 
 group :development, :test, :ci do
   gem 'rspec', '~> 3.5'
+  gem 'rubocop', '~> 0.43.0', require: false
 end
