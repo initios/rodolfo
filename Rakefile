@@ -1,5 +1,3 @@
-# Rake tasks
-
 desc 'Test with a simple template'
 task :templatetest do
   require_relative 'lib/rodolfo'
