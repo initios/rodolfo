@@ -7,5 +7,6 @@ gem 'slop', '~> 4.4.1'
 group :development, :test, :ci do
   gem 'rake'
   gem 'rspec', '~> 3.5'
+  gem 'rspec-json_expectations', '~> 1.4'
   gem 'rubocop', '~> 0.43.0', require: false
 end
