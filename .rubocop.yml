@@ -1,0 +1,14 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+  Include:
+    - 'lib/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 50
+
+Documentation:
+  Enabled: false
