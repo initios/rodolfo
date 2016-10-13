@@ -1,13 +1,7 @@
 module Rodolfo
-  class Template < Prawn::Document
-    def initialize(data)
-      super
-      @data = data
-    end
-
-    def render
-      text @data[:msg]
-      super
+  def self.make_proc(data)
+    proc do
+      text data[:msg]
     end
   end
 end
