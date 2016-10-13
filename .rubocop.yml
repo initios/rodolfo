@@ -4,6 +4,10 @@ AllCops:
   Include:
     - 'lib/**/*'
 
+  Exclude:
+    - Rakefile
+    - spec/spec_helper.rb
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 

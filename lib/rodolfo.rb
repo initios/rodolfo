@@ -1,9 +1,24 @@
-require 'prawn'
-# require 'prawn/measurements'
-# require 'prawn/measurement_extensions'
-# require 'prawn/table'
-
 module Rodolfo
+  class Pdf
+    def initialize(path)
+      @package = TemplatePackage.new path
+    end
+
+    def schema
+      @package.schema
+    end
+
+    def make(data)
+      require 'prawn'
+      require 'prawn/measurements'
+      require 'prawn/measurement_extensions'
+      require 'prawn/table'
+
+      p = @package.proc_maker(data)
+      Prawn::Document.new(&p).render
+    end
+  end
+
   class TemplatePackage
     def initialize(path)
       @path = path
