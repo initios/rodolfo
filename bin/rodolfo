@@ -2,15 +2,32 @@
 
 root_path = File.dirname __dir__
 
+require 'json'
 require 'slop'
 require File.join(root_path, 'lib', 'rodolfo.rb')
 
 opts = Slop.parse do |o|
   o.string '-t', '--template', 'template name'
+  o.string '-o', '--output', 'output pdf (optional, you can use stdout instead)'
   o.on '--version', 'print the version' do
     puts Slop::VERSION
     exit
   end
 end
 
-puts opts
+json_data = $stdin.tty? ? nil : $stdin.read
+
+unless json_data && opts[:template]
+  puts 'Missing json data throught stdin' unless json_data
+  puts opts
+  exit
+end
+
+data = JSON.parse(json_data, symbolize_names: true)
+bytes = Rodolfo::Pdf.new(opts[:template]).make data
+
+if opts[:output]
+  open(opts[:output], 'wb') { |f| f.puts bytes }
+else
+  STDOUT.write bytes
+end
