@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.executables << 'rodolfo'
   s.homepage    = 'https://github.com/initios/rodolfo'
   s.license     = 'MIT'
+  s.required_ruby_version = '>= 2.0'
 end
