@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
-  s.name        = 'Rodolfo'
+  s.name        = 'rodolfo'
   s.version     = '0.0.1'
   s.date        = '2016-10-14'
-  s.summary     = 'Rodolfo'
-  s.description = 'Create pdfs with ease with Prawn'
+  s.summary     = 'rodolfo'
+  s.description = 'Create pdfs with Prawn'
   s.authors     = ['Initios']
   s.email       = 'dev@initios.com'
   s.files       = Dir['lib/**/*']
