@@ -1,15 +1,21 @@
+require 'cucumber/rake/task'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
-RSpec::Core::RakeTask.new(:spec)
+Cucumber::Rake::Task.new(:features) { |t| t.cucumber_opts = 'features --format pretty' }
+RSpec::Core::RakeTask.new :spec
 RuboCop::RakeTask.new
 
 task default: [:spec, :rubocop]
 
 # CI
+Cucumber::Rake::Task.new(:cifeatures) do |t|
+  t.cucumber_opts = '-f junit --out build/logs'
+end
+
 RSpec::Core::RakeTask.new(:cispec) do |t|
   t.fail_on_error = false
   t.rspec_opts = '--no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o build/logs/rspec.xml'
 end
 
-task ci: [:cispec]
+task ci: [:cispec, :cifeatures]

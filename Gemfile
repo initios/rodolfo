@@ -5,6 +5,8 @@ gem 'prawn-table', '~> 0.2.2'
 gem 'slop', '~> 4.4.1'
 
 group :development, :test, :ci do
+  gem 'aruba', '~> 0.14.2'
+  gem 'cucumber', '~> 2.4.0'
   gem 'rake'
   gem 'rspec', '~> 3.5'
   gem 'rspec_junit_formatter', '~> 0.2.3'

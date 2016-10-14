@@ -10,19 +10,18 @@ opts = Slop.parse do |o|
   o.string '-t', '--template', 'template name'
   o.string '-o', '--output', 'output pdf (optional, you can use stdout instead)'
   o.on '--version', 'print the version' do
-    puts Slop::VERSION
-    exit
+    STDOUT.write Rodolfo::VERSION
+    exit 0
   end
 end
 
-json_data = $stdin.tty? ? nil : $stdin.read
 
-unless json_data && opts[:template]
-  puts 'Missing json data throught stdin' unless json_data
+unless opts[:template]
   puts opts
-  exit
+  exit 1
 end
 
+json_data = $stdin.tty? ? nil : $stdin.read
 data = JSON.parse(json_data, symbolize_names: true)
 bytes = Rodolfo::Pdf.new(opts[:template]).make data
 

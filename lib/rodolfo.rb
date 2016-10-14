@@ -1,4 +1,6 @@
 module Rodolfo
+  VERSION = '0.0.2'.freeze
+
   class Pdf
     def initialize(path)
       @package = TemplatePackage.new path
