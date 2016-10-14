@@ -20,4 +20,4 @@ RSpec::Core::RakeTask.new(:cispec) do |t|
   t.rspec_opts = '--no-drb -r rspec_junit_formatter --format RspecJunitFormatter -o build/logs/rspec.xml'
 end
 
-task ci: [:cispec, :rubocop]
+task ci: [:cispec]
