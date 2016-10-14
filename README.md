@@ -21,6 +21,11 @@ By default prawn, prawn/table and prawn/measurements are loaded.
 No advanced ruby skills are required.
 Just follow the Prawn documentation and the example templates and you should be fine.
 
+## Installation
+
+```bash
+gem install rodolfo
+```
 
 ## Usage
 
