@@ -25,7 +25,6 @@
 #   expect(@page_analysis.pages.size).to eq amount.to_i
 # end
 
-Then(/^the output should contain the current Rodolfo version$/) do
-  output = all_commands.map(&:stdout).join('\n')
-  expect(output).to eql Rodolfo::VERSION
+Then(/^the stdout should contain the current Rodolfo version$/) do
+  step %(the output should contain "#{Rodolfo::VERSION}")
 end

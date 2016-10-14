@@ -6,7 +6,12 @@ Feature: Rodolfo CLI
     Scenario: Getting the current cli version
       When I run `rodolfo --version`
       Then the exit status should be 0
-      And the output should contain the current Rodolfo version
+      And the stdout should contain the current Rodolfo version
+
+    Scenario: Running the cli without specifying a template
+      When I run `rodolfo`
+      Then the exit status should be 1
+      And the output should contain "-t, --template  template name"
 
 # Then(/^(?:the )?(output|stderr|stdout)(?: from "([^"]*)")? should( not)? contain( exactly)? "([^"]*)"$/) do |channel, cmd, negated, exactly, expected|
 
