@@ -1,12 +1,14 @@
 module Rodolfo
   class Template
     def initialize(data)
-      data = @data
+      @data = data
     end
 
     def to_proc
+      data = @data
+
       proc do
-        text @data[:msg]
+        text data[:msg]
       end
     end
   end

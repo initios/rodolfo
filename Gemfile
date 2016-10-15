@@ -7,6 +7,7 @@ gem 'slop', '~> 4.4.1'
 group :development, :test, :ci do
   gem 'aruba', '~> 0.14.2'
   gem 'cucumber', '~> 2.4.0'
+  gem 'pdf-inspector', '~> 1.2.1', require: 'pdf/inspector'
   gem 'rake'
   gem 'rspec', '~> 3.5'
   gem 'rspec_junit_formatter', '~> 0.2.3'

@@ -12,6 +12,28 @@ Feature: Rodolfo CLI
         "description": "Simple Template"
       }
       """
+      And a file named "packages/mypackage/template.rb" with:
+      """
+      module Rodolfo
+        class Template
+          def initialize(data)
+            @data = data
+          end
+
+          def to_proc
+            data = @data
+
+            proc do
+              text data[:msg]
+            end
+          end
+        end
+      end
+      """
+      And a file named "data.json" with:
+      """
+      {"msg": "Hello World"}
+      """
 
     Scenario: Getting the current cli version
       When I run `rodolfo --version`
@@ -26,3 +48,12 @@ Feature: Rodolfo CLI
     Scenario: Getting the json schema of a template
       When I run `rodolfo -t packages/mypackage --schema`
       Then the output should contain "http://json-schema.org/draft-04/schema#"
+
+    Scenario: Getting the generated pdf on stdout
+      When I run `rodolfo -t packages/mypackage -o output.pdf` interactively
+      And I pipe in the file "data.json"
+      And I close the stdin stream
+      Then the file named "output.pdf" should exist and be a valid pdf
+      And the pdf should include:
+      | Hello World |
+      And the pdf should contain 1 page
