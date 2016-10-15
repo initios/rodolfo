@@ -52,7 +52,6 @@ Feature: Rodolfo CLI
     Scenario: Generate a pdf on a file
       When I run `rodolfo -t packages/mypackage -o output.pdf` interactively
       And I pipe in the file "data.json"
-      And I close the stdin stream
       Then the exit status should be 0
       And the file named "output.pdf" should exist and be a valid pdf
       And the pdf should include:
@@ -62,7 +61,6 @@ Feature: Rodolfo CLI
     Scenario: Generate a pdf on stdout
       When I run `rodolfo -t packages/mypackage` interactively
       And I pipe in the file "data.json"
-      And I close the stdin stream
       Then the exit status should be 0
       And the stdout should contain the generated pdf contents
       And the pdf should include:
