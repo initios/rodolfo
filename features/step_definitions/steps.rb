@@ -20,3 +20,9 @@ end
 Then(/^the pdf should contain (\d+) pages?$/) do |amount|
   expect(@page_analysis.pages.size).to eq amount.to_i
 end
+
+Then(/^the stdout should contain the generated pdf contents$/) do
+  pdf_content = all_commands.map(&:stdout).join("\n")
+  @text_analysis = PDF::Inspector::Text.analyze(pdf_content)
+  @page_analysis = PDF::Inspector::Page.analyze(pdf_content)
+end
