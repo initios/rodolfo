@@ -10,5 +10,4 @@ describe Rodolfo::Template do
   it 'acts like a proc' do
     expect(template).to respond_to(:to_proc)
   end
-
 end
