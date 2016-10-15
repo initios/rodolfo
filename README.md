@@ -35,3 +35,17 @@ gem install rodolfo
 echo '{"msg": "Hello World"}' | rodolfo -t /path/to/templates/simple -o output.pdf
 cat data.json | rodolfo -t /path/to/templates/simple > output.pdf
 ```
+
+
+## Prawn
+
+Rodolfo loads the following Prawn packages:
+
+```bash
+require 'prawn'
+require 'prawn/measurements'
+require 'prawn/measurement_extensions'
+require 'prawn/table'
+```
+
+Ask to include any other on the [issue tracker](https://github.com/initios/rodolfo/issues)
