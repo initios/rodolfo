@@ -16,7 +16,7 @@ module Rodolfo
       require 'prawn/measurement_extensions'
       require 'prawn/table'
 
-      p = @package.proc_maker(data)
+      p = @package.template.new(data)
       Prawn::Document.new(&p).render
     end
   end
