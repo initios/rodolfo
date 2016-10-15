@@ -7,7 +7,7 @@ require File.join(root_path, 'packages', 'simple', 'template')
 describe Rodolfo::Template do
   subject(:template) { Rodolfo::Template.new({}) }
 
-  it 'returns a json schema' do
+  it 'acts like a proc' do
     expect(template).to respond_to(:to_proc)
   end
 
