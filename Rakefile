@@ -8,6 +8,11 @@ RuboCop::RakeTask.new
 
 task default: [:spec, :rubocop]
 
+desc 'Update cucumber docs'
+Cucumber::Rake::Task.new(:docs) do |t|
+  t.cucumber_opts = '--format html -o docs/features.html'
+end
+
 # CI
 Cucumber::Rake::Task.new(:cifeatures) do |t|
   t.cucumber_opts = '-f junit --out build/logs'
