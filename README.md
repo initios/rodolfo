@@ -36,6 +36,7 @@ echo '{"msg": "Hello World"}' | rodolfo -t /path/to/templates/simple -o output.p
 cat data.json | rodolfo -t /path/to/templates/simple > output.pdf
 ```
 
+Check the [cucumber html report](docs/features.html) for more usage examples
 
 ## Prawn
 
