@@ -4,7 +4,6 @@ require 'rodolfo'
 Gem::Specification.new do |s|
   s.name        = 'rodolfo'
   s.version     = Rodolfo::VERSION
-  s.date        = '2016-10-14'
   s.summary     = 'rodolfo'
   s.description = 'Create pdfs with Prawn'
   s.authors     = ['Initios']

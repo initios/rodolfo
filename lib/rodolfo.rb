@@ -5,7 +5,7 @@ require 'prawn/measurement_extensions'
 require 'prawn/table'
 
 module Rodolfo
-  VERSION = '0.0.2'.freeze
+  VERSION = '0.0.3'.freeze
 
   class Package
     def initialize(path)
