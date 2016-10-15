@@ -13,9 +13,5 @@ describe Rodolfo::Package do
     it 'returns a json schema' do
       expect(package.schema).to include_json(description: 'Simple Template')
     end
-
-    it 'returns its Template class' do
-      expect(package.template).to be Rodolfo::Template
-    end
   end
 end
