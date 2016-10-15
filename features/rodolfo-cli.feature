@@ -12,3 +12,7 @@ Feature: Rodolfo CLI
       When I run `rodolfo`
       Then the exit status should be 1
       And the output should contain "-t, --template  template name"
+
+    Scenario: Getting the json schema of a template
+      When I run `rodolfo -t packages/simple --schema`
+      Then the output should contain "http://json-schema.org/draft-04/schema#"

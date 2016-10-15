@@ -14,7 +14,7 @@ module Rodolfo
 
     def template
       unless @template
-        require @template_file_path
+        require_relative @template_file_path
         @template = Template
       end
 
