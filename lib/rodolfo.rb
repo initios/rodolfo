@@ -1,38 +1,27 @@
+require 'pathname'
+require 'prawn'
+require 'prawn/measurements'
+require 'prawn/measurement_extensions'
+require 'prawn/table'
+
 module Rodolfo
-  class Pdf
+  VERSION = '0.0.2'.freeze
+
+  class Package
     def initialize(path)
-      @package = TemplatePackage.new path
-    end
-
-    def schema
-      @package.schema
-    end
-
-    def make(data)
-      require 'prawn'
-      require 'prawn/measurements'
-      require 'prawn/measurement_extensions'
-      require 'prawn/table'
-
-      p = @package.proc_maker(data)
-      Prawn::Document.new(&p).render
-    end
-  end
-
-  class TemplatePackage
-    def initialize(path)
-      @path = path
+      @path = Pathname.new(path).absolute? ? path : File.join(Dir.pwd, path)
       @json_file_path = File.join @path, 'schema.json'
-      @template_file_path = File.join @path, 'template.rb'
+      @template_file_path = File.join @path, 'template'
     end
 
     def schema
       @json_schema ||= File.read @json_file_path
     end
 
-    def proc_maker(data)
+    def make(data)
       require @template_file_path
-      Rodolfo.make_proc data
+      p = Rodolfo::Template.new data
+      Prawn::Document.new(&p).render
     end
   end
 end
