@@ -21,7 +21,7 @@ module Rodolfo
     end
   end
 
-  class TemplatePackage
+  class Package
     def initialize(path)
       @path = path
       @json_file_path = File.join @path, 'schema.json'
@@ -32,9 +32,13 @@ module Rodolfo
       @json_schema ||= File.read @json_file_path
     end
 
-    def proc_maker(data)
-      require @template_file_path
-      Rodolfo.make_proc data
+    def template
+      unless @template
+        require @template_file_path
+        @template = Template
+      end
+
+      @template
     end
   end
 end
