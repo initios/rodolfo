@@ -23,7 +23,7 @@ end
 
 json_data = $stdin.tty? ? nil : $stdin.read
 data = JSON.parse(json_data, symbolize_names: true)
-bytes = Rodolfo::Pdf.new(opts[:template]).make data
+bytes = Rodolfo::Package.new(opts[:template]).make data
 
 if opts[:output]
   open(opts[:output], 'wb') { |f| f.puts bytes }

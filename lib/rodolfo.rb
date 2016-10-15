@@ -1,26 +1,6 @@
 module Rodolfo
   VERSION = '0.0.2'.freeze
 
-  class Pdf
-    def initialize(path)
-      @package = TemplatePackage.new path
-    end
-
-    def schema
-      @package.schema
-    end
-
-    def make(data)
-      require 'prawn'
-      require 'prawn/measurements'
-      require 'prawn/measurement_extensions'
-      require 'prawn/table'
-
-      p = @package.template.new(data)
-      Prawn::Document.new(&p).render
-    end
-  end
-
   class Package
     def initialize(path)
       @path = path
@@ -39,6 +19,16 @@ module Rodolfo
       end
 
       @template
+    end
+
+    def make(data)
+      require 'prawn'
+      require 'prawn/measurements'
+      require 'prawn/measurement_extensions'
+      require 'prawn/table'
+
+      p = @template.new(data)
+      Prawn::Document.new(&p).render
     end
   end
 end
