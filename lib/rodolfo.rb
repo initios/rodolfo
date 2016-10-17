@@ -20,8 +20,8 @@ module Rodolfo
 
     def make(data)
       require @template_file_path
-      p = Rodolfo::Template.new data
-      Prawn::Document.new(&p).render
+      Rodolfo::Template.new(data).render
     end
+
   end
 end
