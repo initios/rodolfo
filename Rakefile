@@ -6,7 +6,7 @@ Cucumber::Rake::Task.new(:features) { |t| t.cucumber_opts = 'features --format p
 RSpec::Core::RakeTask.new :spec
 RuboCop::RakeTask.new
 
-task default: [:spec, :rubocop]
+task default: [:spec, :features, :rubocop]
 
 desc 'Update cucumber docs'
 Cucumber::Rake::Task.new(:docs) do |t|
