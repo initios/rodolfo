@@ -32,8 +32,8 @@ gem install rodolfo
 ## Usage
 
 ```bash
-echo '{"msg": "Hello World"}' | rodolfo -t /path/to/templates/simple -o output.pdf
-cat data.json | rodolfo -t /path/to/templates/simple > output.pdf
+echo '{"msg": "Hello World"}' | rodolfo -t packages/example -o output.pdf
+cat packages/example/data.json | rodolfo -t packages/example > output.pdf
 ```
 
 Check the [cucumber html report](docs/features.html) for more usage examples
