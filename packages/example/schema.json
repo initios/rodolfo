@@ -1,7 +1,7 @@
 {
     "id": "http://json-schema.org/draft-04/schema#",
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "description": "Simple Template",
+    "description": "Example Template",
     "properties": {
         "msg": {
             "type": "string"

@@ -22,6 +22,5 @@ module Rodolfo
       require @template_file_path
       Rodolfo::Template.new(data).render
     end
-
   end
 end
