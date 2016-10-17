@@ -5,8 +5,10 @@ module Rodolfo
     end
 
     def to_proc
+      data = @data
+
       proc do
-        text @data[:msg]
+        text data[:msg]
       end
     end
   end
