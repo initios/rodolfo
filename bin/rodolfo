@@ -24,9 +24,7 @@ json_data = $stdin.tty? ? {} : $stdin.read
 data = JSON.parse(json_data, symbolize_names: true)
 package = Rodolfo::Package.new opts[:template], data
 
-package.valid?
-
-unless opts.skip_validation? && package.valid?
+unless opts.skip_validation? || package.valid?
   STDOUT.write JSON.dump(package.validation_errors)
   exit 2
 end

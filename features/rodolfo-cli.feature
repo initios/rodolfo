@@ -44,7 +44,34 @@ Feature: Rodolfo CLI
       Then the exit status should be 1
       And the output should contain "usage:"
 
-    Scenario: Generate a pdf on stdout
+    Scenario: Generate a pdf
+      When I run `rodolfo -t mypackage` interactively
+      And I pipe in the file "mypackage/data.json"
+      Then the exit status should be 0
+      And the stdout should contain the generated pdf contents
+      And the pdf should include:
+      | Hello World |
+      And the pdf should contain 1 page
+
+    Scenario: Generate a pdf skipping validation
+      Country field is required
+      but is not in the input data
+      the validation should be skipped
+      and the pdf get generated anyway
+
+      Given a file named "mypackage/schema.json" with:
+      """
+      {
+        "id": "http://json-schema.org/draft-04/schema#",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "Example",
+        "required": ["name", "country"],
+        "properties": {
+            "msg": {"type": "string"},
+            "country": {"type": "integer"}
+        }
+      }
+      """
       When I run `rodolfo -t mypackage --skip-validation` interactively
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 0
