@@ -35,7 +35,7 @@ gem install rodolfo
 cat packages/example/data.json | rodolfo -t packages/example > output.pdf
 ```
 
-Check the [cucumber html report](docs/features.html) for more usage examples
+Check the [cucumber html report](https://cdn.rawgit.com/initios/rodolfo/master/docs/features.html) for more usage examples
 
 ## Prawn
 
