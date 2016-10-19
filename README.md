@@ -49,3 +49,12 @@ require 'prawn/table'
 ```
 
 Ask to include any other on the [issue tracker](https://github.com/initios/rodolfo/issues)
+
+
+## Changelog
+
+### [0.0.5] - 2016-10-19
+### Added
+- Validation (along with --skip-validation option) to perform schema validation when the document is created
+- RDoc on Rodolfo classes
+- Changelog!

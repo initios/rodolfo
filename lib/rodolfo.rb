@@ -9,7 +9,7 @@ require 'prawn/table'
 ##
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-  VERSION = '0.0.4'.freeze
+  VERSION = '0.0.5'.freeze
 
   ##
   # Represents a filesystem folder which should contain
