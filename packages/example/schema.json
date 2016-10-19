@@ -5,7 +5,10 @@
     "properties": {
         "msg": {
             "type": "string"
+        },
+        "other": {
+            "type": "integer"
         }
     },
-    "required": ["msg"]
+    "required": ["msg", "other"]
 }

@@ -8,8 +8,7 @@ require File.join(root_path, 'lib', 'rodolfo.rb')
 
 opts = Slop.parse do |o|
   o.string '-t', '--template', 'template name'
-  o.string '-o', '--output', 'output pdf (optional, you can use stdout instead)'
-  o.on '--schema', 'print the json schema'
+  o.on '--skip-validation', 'skip json schema validation'
   o.on '--version', 'print the version' do
     STDOUT.write Rodolfo::VERSION
     exit 0
@@ -21,19 +20,16 @@ unless opts[:template]
   exit 1
 end
 
-package = Rodolfo::Package.new(opts[:template])
-
-if opts[:schema]
-  STDOUT.write package.schema
-  exit 0
-end
-
-json_data = $stdin.tty? ? nil : $stdin.read
+json_data = $stdin.tty? ? {} : $stdin.read
 data = JSON.parse(json_data, symbolize_names: true)
-bytes = package.make data
+package = Rodolfo::Package.new opts[:template], data
 
-if opts[:output]
-  open(opts[:output], 'wb') { |f| f.puts bytes }
-else
-  STDOUT.write bytes
+package.valid?
+
+unless opts.skip_validation? && package.valid?
+  STDERR.write JSON.dump(package.validation_errors)
+  exit 2
 end
+
+STDOUT.write package.make
+exit 0
