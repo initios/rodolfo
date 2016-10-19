@@ -74,4 +74,4 @@ Feature: Rodolfo CLI
       When I run `rodolfo -t mypackage` interactively
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 2
-      And the stderr should contain "did not contain a required property of 'country' in schema"
+      And the stdout should contain "did not contain a required property of 'country' in schema"

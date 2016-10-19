@@ -27,7 +27,7 @@ package = Rodolfo::Package.new opts[:template], data
 package.valid?
 
 unless opts.skip_validation? && package.valid?
-  STDERR.write JSON.dump(package.validation_errors)
+  STDOUT.write JSON.dump(package.validation_errors)
   exit 2
 end
 
