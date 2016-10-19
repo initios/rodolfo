@@ -53,7 +53,7 @@ Feature: Rodolfo CLI
       | Hello World |
       And the pdf should contain 1 page
 
-    Scenario: Generate a pdf with invalid json
+    Scenario: Generate a pdf with missing field required on json schema
       Given a file named "mypackage/schema.json" with:
       """
       {
