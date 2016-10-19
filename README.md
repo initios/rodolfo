@@ -32,7 +32,6 @@ gem install rodolfo
 ## Usage
 
 ```bash
-echo '{"msg": "Hello World"}' | rodolfo -t packages/example -o output.pdf
 cat packages/example/data.json | rodolfo -t packages/example > output.pdf
 ```
 
