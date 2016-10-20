@@ -9,8 +9,6 @@ require 'prawn/table'
 ##
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-  VERSION = '0.0.5'.freeze
-
   ##
   # Represents a filesystem folder which should contain
   # - schema.json to perform the validation

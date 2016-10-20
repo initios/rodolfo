@@ -4,12 +4,13 @@ root_path = File.dirname __dir__
 
 require 'json'
 require 'slop'
-require File.join(root_path, 'lib', 'rodolfo.rb')
+require File.join(root_path, 'lib', 'rodolfo')
 
 opts = Slop.parse do |o|
   o.string '-t', '--template', 'template name'
   o.on '--skip-validation', 'skip json schema validation'
   o.on '--version', 'print the version' do
+    require File.join(root_path, 'lib', 'meta')
     STDOUT.write Rodolfo::VERSION
     exit 0
   end

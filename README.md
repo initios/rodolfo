@@ -53,6 +53,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### Unreleased
+### Added
+- Rodolfo now is bundled with Prawn and another dependencies
+
 ### [0.0.5] - 2016-10-19
 ### Added
 - Validation (along with --skip-validation option) to perform schema validation when the document is created
