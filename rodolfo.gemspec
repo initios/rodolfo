@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift './lib'
-require 'rodolfo'
+require 'meta'
 
 Gem::Specification.new do |s|
   s.name        = 'rodolfo'
