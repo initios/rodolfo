@@ -11,10 +11,11 @@ Rodolfo is a little binary to create pdfs with ease using the powerful Prawn lib
 The main objective is to be able to use Rodolfo on any project / language as a tool
 to create all of your pdf documents.
 
-All you need to do is create a template folder with the following files:
+All you need to do is create a package folder with the following files:
 
-  - schema.json – a json schema with the required fields, data-types, etc
-  - template.rb – a ruby proc executed by Prawn
+  - schema.json – a json schema with the required fields, data-types, etc (optional)
+  - template.rb – a ruby prawn template (see packages folder for examples)
+  - data.json - as a valid data example and to test your template (optional)
 
 Check the templates folder for examples.
 
@@ -35,6 +36,11 @@ gem install rodolfo
 cat packages/example/data.json | rodolfo -t packages/example > output.pdf
 ```
 
+Possible responses:
+- status code 0. Everything went successfull. stdout is the pdf bytes
+- status code 2. JSON Schema validation failed. stdout is a json with the errors
+- status code ?. Unexpected failure
+
 Check the [cucumber html report](https://cdn.rawgit.com/initios/rodolfo/master/docs/features.html) for more usage examples
 
 ## Prawn
@@ -53,7 +59,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
-### Unreleased
+### [1.0.0.pre1] - 2016-10-20
 ### Added
 - Rodolfo now is bundled with Prawn and another dependencies
 
