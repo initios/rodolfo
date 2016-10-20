@@ -8,6 +8,7 @@ require File.join(root_path, 'lib', 'rodolfo')
 
 opts = Slop.parse do |o|
   o.string '-p', '--package', 'package name'
+  o.on '--schema', 'get the package json schema'
   o.on '--skip-validation', 'skip json schema validation'
   o.on '--version', 'print the version' do
     require File.join(root_path, 'lib', 'meta')
@@ -16,13 +17,17 @@ opts = Slop.parse do |o|
   end
 end
 
-unless opts[:package]
+unless opts.package?
   puts opts
   exit 1
 end
 
-json_data = $stdin.tty? ? {} : $stdin.read
-data = JSON.parse(json_data, symbolize_names: true)
+if opts.schema?
+  STDOUT.write Rodolfo::Package.new(opts[:package], {}).schema
+  exit 0
+end
+
+data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
 package = Rodolfo::Package.new opts[:package], data
 
 unless opts.skip_validation? || package.valid?

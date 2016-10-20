@@ -59,6 +59,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [Unreleased]
+### Added
+- Option --schema
+
 ### [1.0.0.pre1] - 2016-10-20
 ### Added
 - Rodolfo now is bundled with Prawn and another dependencies
