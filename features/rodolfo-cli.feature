@@ -45,7 +45,7 @@ Feature: Rodolfo CLI
       And the output should contain "usage:"
 
     Scenario: Generate a pdf
-      When I run `rodolfo -t mypackage` interactively
+      When I run `rodolfo -p mypackage` interactively
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 0
       And the stdout should contain the generated pdf contents
@@ -72,7 +72,7 @@ Feature: Rodolfo CLI
         }
       }
       """
-      When I run `rodolfo -t mypackage --skip-validation` interactively
+      When I run `rodolfo -p mypackage --skip-validation` interactively
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 0
       And the stdout should contain the generated pdf contents
@@ -98,7 +98,7 @@ Feature: Rodolfo CLI
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo -t mypackage` interactively
+      When I run `rodolfo -p mypackage` interactively
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 2
       And the stdout should contain "did not contain a required property of 'country' in schema"
