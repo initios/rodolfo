@@ -59,7 +59,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
-### [Unreleased]
+### [1.0.0]
 ### Added
 - Option --schema
 
