@@ -59,6 +59,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [Unreleased]
+### Added
+- Rescue some unexpected errors
+
 ### [1.0.0] - 2016-10-31
 ### Added
 - Option --schema
