@@ -17,30 +17,28 @@ module Rodolfo
   #
   # It handles methods for manipulate those files and the pdf generation
   class Package
+    attr_reader :validation_errors
+
     def initialize(path, data)
       @path = Pathname.new(path).absolute? ? path : File.join(Dir.pwd, path)
       @data = data
-      @json_file_path = File.join @path, 'schema.json'
-      @template_file_path = File.join @path, 'template'
+
+      args = schema, @data, { errors_as_objects: true }
+      @validation_errors = JSON::Validator.fully_validate(*args)
     end
 
     def schema
-      @json_schema ||= File.read @json_file_path
+      json_file_path = File.join @path, 'schema.json'
+      File.read json_file_path
     end
 
     def valid?
-      args = schema, @data, { errors_as_objects: true }
-      @validation_errors = JSON::Validator.fully_validate(*args)
       @validation_errors.empty?
     end
 
-    def validation_errors
-      valid? unless @validation_errors
-      @validation_errors
-    end
-
     def make
-      require @template_file_path
+      template_file_path = File.join @path, 'template'
+      require template_file_path
       Rodolfo::Template.new(@data).render
     end
   end

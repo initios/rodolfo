@@ -35,5 +35,10 @@ unless opts.skip_validation? || package.valid?
   exit 2
 end
 
-STDOUT.write package.make
-exit 0
+begin
+  STDOUT.write package.make
+  exit 0
+rescue NoMethodError
+  STDOUT.write 'Missing or incorrect data, template can\'t be rendered'
+  exit 2
+end
