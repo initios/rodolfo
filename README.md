@@ -62,6 +62,24 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 ### [Unreleased]
 ### Added
 - Rescue some unexpected errors
+- Add schema default values support
+
+
+  ```bash
+  // Schema
+  "properties": [
+    "msg": {
+      "type": "string", "default": "default msg"
+    }
+  ]
+
+  // Payload
+  {}
+
+  Will transform the payload to
+  {"msg": "default msg"}
+  ```
+
 
 ### [1.0.0] - 2016-10-31
 ### Added

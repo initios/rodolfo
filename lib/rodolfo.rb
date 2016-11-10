@@ -17,14 +17,13 @@ module Rodolfo
   #
   # It handles methods for manipulate those files and the pdf generation
   class Package
-    attr_reader :validation_errors
+    attr_reader :data, :validation_errors
 
     def initialize(path, data)
       @path = Pathname.new(path).absolute? ? path : File.join(Dir.pwd, path)
+      opts = { errors_as_objects: true, insert_defaults: true }
+      @validation_errors = JSON::Validator.fully_validate(schema, data, opts)
       @data = data
-
-      args = schema, @data, { errors_as_objects: true }
-      @validation_errors = JSON::Validator.fully_validate(*args)
     end
 
     def schema
