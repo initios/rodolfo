@@ -1,5 +1,7 @@
 # Rodolfo
 
+![Rodolfo Logo](assets/rodolfo-logo.png)
+
 [![Gem Version](https://badge.fury.io/rb/rodolfo.svg)](https://badge.fury.io/rb/Rodolfo)
 
 [![Build Status](https://travis-ci.org/initios/rodolfo.svg?branch=master)](https://travis-ci.org/initios/rodolfo)
