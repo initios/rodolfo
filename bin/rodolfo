@@ -1,44 +1,56 @@
 #!/usr/bin/env ruby
 
 root_path = File.dirname __dir__
+rodolfo_path = File.join(root_path, 'lib', 'rodolfo')
 
-require 'json'
-require 'slop'
-require File.join(root_path, 'lib', 'rodolfo')
+require File.join(rodolfo_path, 'cli')
 
-opts = Slop.parse do |o|
-  o.string '-p', '--package', 'package name'
-  o.on '--schema', 'get the package json schema'
-  o.on '--skip-validation', 'skip json schema validation'
-  o.on '--version', 'print the version' do
-    require File.join(root_path, 'lib', 'meta')
-    STDOUT.write Rodolfo::VERSION
-    exit 0
-  end
-end
 
-unless opts.package?
-  puts opts
-  exit 1
-end
+Rodolfo::CLI.start(ARGV)
 
-if opts.schema?
-  STDOUT.write Rodolfo::Package.new(opts[:package], {}).schema
-  exit 0
-end
 
-data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
-package = Rodolfo::Package.new opts[:package], data
+# exit
 
-unless opts.skip_validation? || package.valid?
-  STDOUT.write JSON.dump(package.validation_errors)
-  exit 2
-end
 
-begin
-  STDOUT.write package.make
-  exit 0
-rescue NoMethodError
-  STDOUT.write 'Missing or incorrect data, template can\'t be rendered'
-  exit 2
-end
+# root_path = File.dirname __dir__
+
+# require 'json'
+# require 'slop'
+# require File.join(root_path, 'lib', 'rodolfo')
+
+# opts = Slop.parse do |o|
+#   o.string '-p', '--package', 'package name'
+#   o.on '--schema', 'get the package json schema'
+#   o.on '--skip-validation', 'skip json schema validation'
+#   o.on '--version', 'print the version' do
+#     require File.join(root_path, 'lib', 'meta')
+#     STDOUT.write Rodolfo::VERSION
+#     exit 0
+#   end
+# end
+
+# unless opts.package?
+#   puts opts
+#   exit 1
+# end
+
+# if opts.schema?
+#   STDOUT.write Rodolfo::Package.new(opts[:package], {}).schema
+#   exit 0
+# end
+
+# data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
+# package = Rodolfo::Package.new opts[:package], data
+
+# unless opts.skip_validation? || package.valid?
+#   STDOUT.write JSON.dump(package.validation_errors)
+#   exit 2
+# end
+
+# begin
+#   STDOUT.write package.make
+#   exit 0
+# rescue NoMethodError
+#   STDOUT.write 'Missing or incorrect data, template can\'t be rendered'
+#   exit 2
+# end
