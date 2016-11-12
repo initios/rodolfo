@@ -5,10 +5,12 @@ require_relative 'rodolfo'
 module Rodolfo
   # Rodolfo CLI
   class CLI < Thor
-    class_option :strict, type: :boolean, default: :false
 
-    desc 'render package', 'render a rodolfo package'
-    option '--skip-validation'
+    desc 'render PACKAGE PATH', 'render a rodolfo package path'
+    option 'skip-validation', aliases: ['-sv'], type: :boolean, default: :false,
+                              desc: 'Skip schema validation'
+    option :strict, type: :boolean, default: :false,
+                    desc: 'Missing fields will not validate'
     def render(package_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
       package = Rodolfo::Package.new package_path, data
@@ -29,9 +31,9 @@ module Rodolfo
     # def schema(package_path)
     # end
 
-    def help
+    def help(*args, &block)
       puts "Rodolfo v#{Rodolfo::VERSION}"
-      super
+      super(*args, &block)
     end
 
   end
