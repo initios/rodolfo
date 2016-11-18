@@ -57,6 +57,15 @@ Feature: Rodolfo CLI
       | Hello World |
       And the pdf should contain 1 page
 
+    Scenario: Generate a pdf on a file
+      When I run `rodolfo render mypackage --save-to output.pdf` interactively
+      And I pipe in the file "mypackage/data.json"
+      Then the exit status should be 0
+      And the file named "output.pdf" should exist and be a valid pdf
+      And the pdf should include:
+      | Hello World |
+      And the pdf should contain 1 page
+
     Scenario: Generate a pdf with missing field required on json schema
       Given a file named "mypackage/schema.json" with:
       """
