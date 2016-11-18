@@ -11,13 +11,14 @@ require_relative 'exceptions'
 module Rodolfo
 
   ##
-  # Represents a filesystem folder which should contain
+  # Requires a filesystem folder path which should contain
   # - schema.json to perform the validation
-  # - data.json as example data
+  # - data.json as example data (for testing purposes only and valid example)
   # - template.rb the pdf generator itself
   #
-  # It handles methods for manipulate those files and the pdf generation
-  class Package
+  # It renders the the given template validating
+  # the data against that json schema
+  class Renderer
     attr_reader :data, :validation_errors
 
     def initialize(path, data)

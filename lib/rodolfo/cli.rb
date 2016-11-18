@@ -1,7 +1,7 @@
 require 'thor'
 require_relative 'exceptions'
 require_relative 'meta'
-require_relative 'package'
+require_relative 'renderer'
 
 module Rodolfo
   # Rodolfo CLI
@@ -16,13 +16,13 @@ module Rodolfo
 
     desc 'schema PACKAGE PATH', 'print the package json schema'
     def schema(package_path)
-      puts Rodolfo::Package.new(package_path, {}).json_schema
+      puts Rodolfo::Renderer.new(package_path, {}).json_schema
     end
 
     desc 'render PACKAGE PATH', 'render a rodolfo package path'
     def render(package_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
-      package = Rodolfo::Package.new package_path, data
+      package = Rodolfo::Renderer.new package_path, data
       STDOUT.write package.render
       exit 0
     rescue RenderError => error
