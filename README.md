@@ -66,6 +66,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
 - Add schema default values support
+- Add --save-to option to save pdf files to a file instead to stdout
 
 
   ```bash
