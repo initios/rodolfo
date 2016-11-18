@@ -7,6 +7,13 @@ module Rodolfo
   # Rodolfo CLI
   class CLI < Thor
 
+    map %w(--version -v) => :__print_version
+
+    desc '--version, -v', 'print the version'
+    def __print_version
+      puts VERSION
+    end
+
     desc 'render PACKAGE PATH', 'render a rodolfo package path'
     def render(package_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
@@ -22,6 +29,5 @@ module Rodolfo
       puts "Rodolfo v#{Rodolfo::VERSION}"
       super(*args, &block)
     end
-
   end
 end
