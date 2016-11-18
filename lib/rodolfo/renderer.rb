@@ -31,26 +31,20 @@ module Rodolfo
       @schema.to_s
     end
 
-<<<<<<< Updated upstream
     # Validates the data against the json schema
     def validated_data
       @schema.validate(@data)
-=======
+    end
+
     def pdf_meta
       { CreationDate: Time.now,
         Author: "Rodolfo v#{VERSION}" }
->>>>>>> Stashed changes
     end
 
     # Render the template
     def render
       require File.join @path, 'template'
-<<<<<<< Updated upstream
-      Rodolfo::Template.new(validated_data).render
-
-=======
-      Rodolfo::Template.new(@data, info: pdf_meta).render
->>>>>>> Stashed changes
+      Rodolfo::Template.new(validated_data, info: pdf_meta).render
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
       raise RenderError, [msg]
