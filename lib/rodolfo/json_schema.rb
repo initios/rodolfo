@@ -17,6 +17,7 @@ module Rodolfo
                strict: true }
       errors = JSON::Validator.fully_validate json, data, opts
       raise SchemaValidationError, errors unless errors.empty?
+      data
     end
 
     def json
