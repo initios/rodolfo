@@ -32,7 +32,7 @@ gem install rodolfo
 ## Usage
 
 ```bash
-cat packages/example/data.json | rodolfo -t packages/example > output.pdf
+cat packages/example/data.json | rodolfo render packages/example > output.pdf
 ```
 
 Possible responses:
@@ -60,6 +60,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ### [Unreleased]
 ### Added
+- Huge refactoring. Cli now uses Thor
+- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
+- --skip-validation flag removed. Validation should be always performed
+- --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
 - Add schema default values support
 
