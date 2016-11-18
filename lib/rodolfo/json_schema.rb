@@ -4,7 +4,6 @@ require_relative 'exceptions'
 
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-
   # Rodolfo Package JSON Schema
   class JSONSchema
     def initialize(path)

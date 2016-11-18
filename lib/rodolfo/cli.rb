@@ -6,9 +6,9 @@ require_relative 'renderer'
 module Rodolfo
   # Rodolfo CLI
   class CLI < Thor
-    # def self.exit_on_failure?
-    #   true
-    # end
+    def self.exit_on_failure?
+      true
+    end
 
     map %w(--version -v) => :__print_version
 

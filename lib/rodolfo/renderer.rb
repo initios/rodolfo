@@ -7,10 +7,8 @@ require 'prawn/table'
 require_relative 'json_schema'
 require_relative 'exceptions.rb'
 
-
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-
   ##
   # Requires a filesystem folder path which should contain
   # - schema.json to perform the validation
