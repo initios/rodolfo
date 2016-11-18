@@ -1,7 +1,7 @@
 require 'thor'
 require_relative 'exceptions'
 require_relative 'meta'
-require_relative 'rodolfo'
+require_relative 'package'
 
 module Rodolfo
   # Rodolfo CLI
@@ -14,7 +14,7 @@ module Rodolfo
       puts VERSION
     end
 
-    desc 'schema PACKAGE PATH', 'print the package schema'
+    desc 'schema PACKAGE PATH', 'print the package json schema'
     def schema(package_path)
       puts Rodolfo::Package.new(package_path, {}).json_schema
     end
