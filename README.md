@@ -41,6 +41,7 @@ Possible responses:
 - status code ?. Unexpected failure
 
 Check the [cucumber html report](https://cdn.rawgit.com/initios/rodolfo/master/docs/features.html) for more usage examples
+Or run rodolfo without args too see the help
 
 ## Prawn
 
@@ -67,6 +68,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 - Rescue some unexpected errors
 - Add schema default values support
 - Add --save-to option to save pdf files to a file instead to stdout
+- Templates now requires an `options` arguments (see packages/example/template.rb)
 
 
   ```bash
