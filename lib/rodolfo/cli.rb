@@ -28,7 +28,7 @@ module Rodolfo
       package = Rodolfo::Renderer.new package_path, data
       STDOUT.write package.render
       exit 0
-    rescue RenderError => error
+    rescue RenderError, SchemaValidationError => error
       STDOUT.write error.errors
       exit 2
     end

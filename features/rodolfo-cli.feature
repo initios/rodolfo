@@ -48,14 +48,14 @@ Feature: Rodolfo CLI
       Then the exit status should be 0
       And the output should contain "rodolfo help [COMMAND]"
 
-    # Scenario: Generate a pdf
-    #   When I run `rodolfo -p mypackage` interactively
-    #   And I pipe in the file "mypackage/data.json"
-    #   Then the exit status should be 0
-    #   And the stdout should contain the generated pdf contents
-    #   And the pdf should include:
-    #   | Hello World |
-    #   And the pdf should contain 1 page
+    Scenario: Generate a pdf
+      When I run `rodolfo render mypackage` interactively
+      And I pipe in the file "mypackage/data.json"
+      Then the exit status should be 0
+      And the stdout should contain the generated pdf contents
+      And the pdf should include:
+      | Hello World |
+      And the pdf should contain 1 page
 
     # Scenario: Generate a pdf skipping validation
     #   Country field is required
@@ -84,28 +84,28 @@ Feature: Rodolfo CLI
     #   | Hello World |
     #   And the pdf should contain 1 page
 
-    # Scenario: Generate a pdf with missing field required on json schema
-    #   Given a file named "mypackage/schema.json" with:
-    #   """
-    #   {
-    #     "id": "http://json-schema.org/draft-04/schema#",
-    #     "$schema": "http://json-schema.org/draft-04/schema#",
-    #     "description": "Example",
-    #     "required": ["name", "country"],
-    #     "properties": {
-    #         "name": {"type": "string"},
-    #         "country": {"type": "string"}
-    #     }
-    #   }
-    #   """
-    #   And a file named "mypackage/data.json" with:
-    #   """
-    #   {"name": "Carlos"}
-    #   """
-    #   When I run `rodolfo -p mypackage` interactively
-    #   And I pipe in the file "mypackage/data.json"
-    #   Then the exit status should be 2
-    #   And the stdout should contain "did not contain a required property of 'country' in schema"
+    Scenario: Generate a pdf with missing field required on json schema
+      Given a file named "mypackage/schema.json" with:
+      """
+      {
+        "id": "http://json-schema.org/draft-04/schema#",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "Example",
+        "required": ["name", "country"],
+        "properties": {
+            "name": {"type": "string"},
+            "country": {"type": "string"}
+        }
+      }
+      """
+      And a file named "mypackage/data.json" with:
+      """
+      {"name": "Carlos"}
+      """
+      When I run `rodolfo render mypackage` interactively
+      And I pipe in the file "mypackage/data.json"
+      Then the exit status should be 2
+      And the stdout should contain "did not contain a required property of 'country' in schema"
 
     # Scenario: Generate a pdf with missing data which is not required on the json schema
     #   Given a file named "mypackage/schema.json" with:

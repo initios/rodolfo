@@ -1,5 +1,6 @@
 require 'json'
 require 'json-schema'
+require_relative 'exceptions'
 
 # Create PDFs from the CLI using Prawn
 module Rodolfo
@@ -16,7 +17,7 @@ module Rodolfo
       opts = { errors_as_objects: true, insert_defaults: true,
                strict: true }
       errors = JSON::Validator.fully_validate json, data, opts
-      raise SchemaValidationError(errors) unless errors.empty?
+      raise SchemaValidationError, errors unless errors.empty?
     end
 
     def json

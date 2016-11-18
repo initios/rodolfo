@@ -5,7 +5,8 @@ require 'prawn/measurement_extensions'
 require 'prawn/table'
 
 require_relative 'json_schema'
-require_relative 'exceptions'
+require_relative 'exceptions.rb'
+
 
 # Create PDFs from the CLI using Prawn
 module Rodolfo
@@ -41,7 +42,7 @@ module Rodolfo
 
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
-      raise RenderError [msg]
+      raise RenderError, [msg]
     end
   end
 end

@@ -9,6 +9,11 @@ module Rodolfo
   end
 
   # Schema validation failed
-  class SchemaValidationError < RenderError
+  class SchemaValidationError < RuntimeError
+    attr_reader :errors
+
+    def initialize(errors)
+      @errors = errors
+    end
   end
 end
