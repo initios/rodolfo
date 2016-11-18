@@ -14,6 +14,11 @@ module Rodolfo
       puts VERSION
     end
 
+    desc 'schema PACKAGE PATH', 'print the package schema'
+    def schema(package_path)
+      puts Rodolfo::Package.new(package_path, {}).json_schema
+    end
+
     desc 'render PACKAGE PATH', 'render a rodolfo package path'
     def render(package_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)

@@ -39,9 +39,9 @@ Feature: Rodolfo CLI
       Then the exit status should be 0
       And the stdout should contain the current Rodolfo version
 
-    # Scenario: Getting the json schema of a template
-    #   When I run `rodolfo -p mypackage --schema`
-    #   Then the output should contain "Example Template"
+    Scenario: Getting the json schema of a template
+      When I run `rodolfo schema mypackage`
+      Then the output should contain "Example Template"
 
     # Scenario: Running the cli without specifying a template
     #   When I run `rodolfo`
