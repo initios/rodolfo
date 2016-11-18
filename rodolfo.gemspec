@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift './lib'
-require 'meta'
+require 'rodolfo/meta'
 
 Gem::Specification.new do |s|
   s.name        = 'rodolfo'
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'json-schema', '~> 2.7'
   s.add_runtime_dependency 'prawn', '~> 2.1.0', '>= 2.1.0'
   s.add_runtime_dependency 'prawn-table', '~> 0.2.2'
-  s.add_runtime_dependency 'slop', '~> 4.4.1', '>= 4.4.1'
+  s.add_runtime_dependency 'thor', '~> 0.19.1'
 
   s.add_development_dependency 'aruba', '~> 0.14.2', '>= 0.14.2'
   s.add_development_dependency 'cucumber', '~> 2.4.0', '>= 2.4.0'
