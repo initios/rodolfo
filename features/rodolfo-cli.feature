@@ -43,10 +43,10 @@ Feature: Rodolfo CLI
       When I run `rodolfo schema mypackage`
       Then the output should contain "Example Template"
 
-    # Scenario: Running the cli without specifying a template
-    #   When I run `rodolfo`
-    #   Then the exit status should be 1
-    #   And the output should contain "usage:"
+    Scenario: Running the cli without specifying a template
+      When I run `rodolfo`
+      Then the exit status should be 0
+      And the output should contain "rodolfo help [COMMAND]"
 
     # Scenario: Generate a pdf
     #   When I run `rodolfo -p mypackage` interactively
