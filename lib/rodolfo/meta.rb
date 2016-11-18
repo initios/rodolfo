@@ -1,5 +1,4 @@
-##
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-  VERSION = '1.0.1-pre'.freeze
+  VERSION = '2.0.0-pre'.freeze
 end
