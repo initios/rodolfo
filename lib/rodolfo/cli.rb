@@ -22,11 +22,16 @@ module Rodolfo
       puts Rodolfo::Renderer.new(package_path, {}).json_schema
     end
 
-    desc 'render PACKAGE PATH', 'render a rodolfo package path'
+    desc 'render PACKAGE PATH [--save-to file.pdf]', 'render a rodolfo package'
+    method_option 'save-to', type: :string, aliases: '-s'
     def render(package_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
       package = Rodolfo::Renderer.new package_path, data
-      STDOUT.write package.render
+
+      content = package.render
+
+      file_name = options['save-to']
+      file_name ? File.write(file_name, content) : STDOUT.write(content)
       exit 0
     rescue RenderError, SchemaValidationError => error
       STDOUT.write error.errors

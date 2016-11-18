@@ -31,12 +31,15 @@ module Rodolfo
       @schema.to_s
     end
 
-    # Render the template
-    # May raises a ValidationError
-    def render
+    # Validates the data against the json schema
+    def validated_data
       @schema.validate(@data)
+    end
+
+    # Render the template
+    def render
       require File.join @path, 'template'
-      Rodolfo::Template.new(@data).render
+      Rodolfo::Template.new(validated_data).render
 
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
