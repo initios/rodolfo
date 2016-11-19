@@ -7,7 +7,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example Template"
       }
@@ -56,6 +56,7 @@ Feature: Rodolfo CLI
       And the pdf should include:
       | Hello World |
       And the pdf should contain 1 page
+      And the pdf should contain metadata
 
     Scenario: Generate a pdf on a file
       When I run `rodolfo render mypackage --save-to output.pdf` interactively
@@ -70,7 +71,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": ["name", "country"],
@@ -96,7 +97,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": [],
@@ -119,7 +120,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": ["name"],

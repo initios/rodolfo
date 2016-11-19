@@ -37,8 +37,15 @@ module Rodolfo
     end
 
     def pdf_meta
-      { CreationDate: Time.now,
-        Author: "Rodolfo v#{VERSION}" }
+      schema_meta = @schema.to_h
+
+      { CreationDate: Time.now.iso8601,
+        Renderer: "Rodolfo v#{VERSION}",
+        JsonSchema: {
+          description: schema_meta['description'],
+          id: schema_meta['id'],
+          schema: schema_meta['$schema']
+        }}
     end
 
     # Render the template

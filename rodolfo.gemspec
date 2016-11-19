@@ -15,13 +15,13 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0'
 
   s.add_runtime_dependency 'json-schema', '~> 2.7'
+  s.add_development_dependency 'pdf-reader', '~> 1.4.0'
   s.add_runtime_dependency 'prawn', '~> 2.1.0', '>= 2.1.0'
   s.add_runtime_dependency 'prawn-table', '~> 0.2.2'
   s.add_runtime_dependency 'thor', '~> 0.19.1'
 
   s.add_development_dependency 'aruba', '~> 0.14.2', '>= 0.14.2'
   s.add_development_dependency 'cucumber', '~> 2.4.0', '>= 2.4.0'
-  s.add_development_dependency 'pdf-inspector', '~> 1.2.1', '>= 1.2.1'
   s.add_development_dependency 'rake', '~> 11.3.0', '>= 11.3.0'
   s.add_development_dependency 'rspec', '~> 3.5', '>= 3.5'
   s.add_development_dependency 'rspec_junit_formatter', '~> 0.2.3', '>= 0.2.3'

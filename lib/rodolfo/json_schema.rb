@@ -20,6 +20,10 @@ module Rodolfo
       data
     end
 
+    def to_h
+      JSON.parse json
+    end
+
     def json
       @json ||= File.read @path
     end
