@@ -94,6 +94,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 ### Modified
 - The cli now uses Thor
 - Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
+- Rodolfo templates now uses simple ruby classes, removed Prawn inheritance
 
 
 ### Removed
