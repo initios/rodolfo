@@ -45,7 +45,7 @@ module Rodolfo
           description: schema_meta['description'],
           id: schema_meta['id'],
           schema: schema_meta['$schema']
-        }}
+        } }
     end
 
     # Render the template

@@ -3,7 +3,6 @@ require 'pdf/reader'
 
 # Create PDFs from the CLI using Prawn
 module Rodolfo
-
   # Reads a PDF info and metadata
   class Reader
     def initialize(pdf)
