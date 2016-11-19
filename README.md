@@ -29,6 +29,13 @@ Just follow the Prawn documentation and the example templates and you should be 
 gem install rodolfo
 ```
 
+## Quick Start
+
+```
+rodolfo g new-package "hello world package"
+rodolfo render new-package --save-to hello.pdf
+```
+
 ## Usage
 
 ```bash
@@ -61,6 +68,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ### [Unreleased]
 ### Added
+- Add recipe scaffolding command
 - Read command option. It prints a pdf metadata
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
