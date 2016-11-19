@@ -7,20 +7,35 @@ require_relative 'renderer'
 module Rodolfo
   # Rodolfo recipe generator
   class Generator < Thor::Group
-    argument :name, type: :string, desc: 'Recipe name'
+    argument :folder, type: :string, desc: 'Recipe folder name'
+    argument :description, type: :string, desc: 'Recipe description'
 
     include Thor::Actions
 
-     def one
-      puts 1
+    def self.source_root
+      File.join(File.expand_path('.', Dir.pwd), 'templates')
+    end
+
+    def one
+      empty_directory(folder)
     end
 
     def two
-      puts 2
+      template('schema.tt', "#{folder}/schema.json")
     end
 
     def three
-      puts 3
+      copy_file('template.tt', "#{folder}/template.rb")
+    end
+
+    def four
+      copy_file('data.tt', "#{folder}/data.json")
+    end
+
+    def five
+      puts
+      puts 'Recipe ready! Try it with:'
+      puts "cat #{folder}/data.json | rodolfo render #{folder} --save-to #{folder}.pdf"
     end
   end
 
@@ -68,6 +83,7 @@ module Rodolfo
       super(*args, &block)
     end
 
-    register(Generator, 'generator', 'generator NAME', 'Scaffold new recipe')
+    register(Generator, 'generator', 'generator FOLDER DESCRIPTION',
+             'Scaffold new recipe')
   end
 end

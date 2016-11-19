@@ -1,0 +1,11 @@
+{
+    "id": "http://www.example.com/json-schema/v2/tpl/<%= folder %>",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "<%= description %>",
+    "properties": {
+        "msg": {
+            "type": "string"
+        }
+    },
+    "required": ["msg"]
+}
