@@ -23,7 +23,7 @@ module Rodolfo
       puts Rodolfo::Renderer.new(package_path, {}).json_schema
     end
 
-    desc 'read pdf', 'prints pdf metadata and rodolfo info'
+    desc 'read PDF', 'prints pdf metadata and rodolfo info'
     def read(pdf)
       puts Rodolfo::Reader.new(pdf).to_json
     end

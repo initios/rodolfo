@@ -12,10 +12,10 @@ module Rodolfo
 
     def to_h
       {
-        pdf_version: @reader.pdf_version,
-        info: @reader.info,
-        meta: @reader.metadata,
-        pages: @reader.page_count
+        PdfVersion: @reader.pdf_version,
+        Info: @reader.info,
+        Meta: @reader.metadata,
+        Pages: @reader.page_count
       }
     end
 
