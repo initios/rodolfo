@@ -16,7 +16,7 @@ All you need to do is create a recipe folder with the following files:
   - template.rb – a ruby prawn template (see recipes folder for examples)
   - data.json - as a valid data example and to test your template (optional)
 
-Check the templates folder for examples.
+Check the recipes folder for examples.
 
 By default prawn, prawn/table and prawn/measurements are loaded.
 
