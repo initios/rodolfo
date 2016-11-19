@@ -40,7 +40,7 @@ end
 Given(/^a file example\.pdf$/) do
   features_path = File.dirname(__dir__)
   root_path = File.dirname(features_path)
-  filename = File.join(root_path, 'packages', 'example', 'example.pdf')
+  filename = File.join(root_path, 'recipes', 'example', 'example.pdf')
   dest_folder = aruba.config.working_directory
   FileUtils.cp(filename, aruba.config.working_directory)
 end

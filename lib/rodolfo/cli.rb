@@ -53,9 +53,9 @@ module Rodolfo
       puts VERSION
     end
 
-    desc 'schema PACKAGE PATH', 'print the package json schema'
-    def schema(package_path)
-      puts Rodolfo::Renderer.new(package_path, {}).json_schema
+    desc 'schema RECIPE PATH', 'print the recipe json schema'
+    def schema(recipe_path)
+      puts Rodolfo::Renderer.new(recipe_path, {}).json_schema
     end
 
     desc 'read PDF', 'prints pdf metadata and rodolfo info'
@@ -63,13 +63,13 @@ module Rodolfo
       puts Rodolfo::Reader.new(pdf).to_json
     end
 
-    desc 'render PACKAGE PATH [--save-to file.pdf]', 'render a rodolfo package'
+    desc 'render RECIPE PATH [--save-to file.pdf]', 'render a rodolfo recipe'
     method_option 'save-to', type: :string, aliases: '-s'
-    def render(package_path)
+    def render(recipe_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
-      package = Rodolfo::Renderer.new package_path, data
+      recipe = Rodolfo::Renderer.new recipe_path, data
 
-      content = package.render
+      content = recipe.render
 
       file_name = options['save-to']
       file_name ? File.write(file_name, content) : STDOUT.write(content)

@@ -4,7 +4,7 @@ Feature: Rodolfo CLI
     In order to be able to use it the reports from any programming language
 
     Background:
-      Given a file named "mypackage/schema.json" with:
+      Given a file named "myrecipe/schema.json" with:
       """
       {
         "id": "http://www.example.com/json-schema/v2/tpl/example-template",
@@ -12,24 +12,31 @@ Feature: Rodolfo CLI
         "description": "Example Template"
       }
       """
-      And a file named "mypackage/template.rb" with:
+      And a file named "myrecipe/template.rb" with:
       """
       module Rodolfo
-        class Template < Prawn::Document
-          def initialize(data, options)
+        # A Rodolfo Prawn pdf generator
+        class Template
+          def initialize(data)
             @data = data
-            super options
           end
 
-          def render
-            text @data[:msg]
-            super
+          # Prawn config
+          def config
+            { }
+          end
+
+          def to_proc
+            data = @data
+
+            proc do
+              text data[:msg]
+            end
           end
         end
       end
-
       """
-      And a file named "mypackage/data.json" with:
+      And a file named "myrecipe/data.json" with:
       """
       {"msg": "Hello World"}
       """
@@ -40,7 +47,7 @@ Feature: Rodolfo CLI
       And the stdout should contain the current Rodolfo version
 
     Scenario: Getting the json schema of a template
-      When I run `rodolfo schema mypackage`
+      When I run `rodolfo schema myrecipe`
       Then the output should contain "Example Template"
 
     Scenario: Running the cli without specifying a template
@@ -49,8 +56,8 @@ Feature: Rodolfo CLI
       And the output should contain "rodolfo help [COMMAND]"
 
     Scenario: Generate a pdf
-      When I run `rodolfo render mypackage` interactively
-      And I pipe in the file "mypackage/data.json"
+      When I run `rodolfo render myrecipe` interactively
+      And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 0
       And the stdout should contain the generated pdf contents
       And the pdf should include:
@@ -59,8 +66,8 @@ Feature: Rodolfo CLI
       And the pdf should contain metadata
 
     Scenario: Generate a pdf on a file
-      When I run `rodolfo render mypackage --save-to output.pdf` interactively
-      And I pipe in the file "mypackage/data.json"
+      When I run `rodolfo render myrecipe --save-to output.pdf` interactively
+      And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 0
       And the file named "output.pdf" should exist and be a valid pdf
       And the pdf should include:
@@ -68,7 +75,7 @@ Feature: Rodolfo CLI
       And the pdf should contain 1 page
 
     Scenario: Generate a pdf with missing field required on json schema
-      Given a file named "mypackage/schema.json" with:
+      Given a file named "myrecipe/schema.json" with:
       """
       {
         "id": "http://www.example.com/json-schema/v2/tpl/example-template",
@@ -81,12 +88,12 @@ Feature: Rodolfo CLI
         }
       }
       """
-      And a file named "mypackage/data.json" with:
+      And a file named "myrecipe/data.json" with:
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo render mypackage` interactively
-      And I pipe in the file "mypackage/data.json"
+      When I run `rodolfo render myrecipe` interactively
+      And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 2
       And the stdout should contain "did not contain a required property of 'country' in schema"
 
@@ -94,7 +101,7 @@ Feature: Rodolfo CLI
       It should fail anyway because of
       the json parser "strict" option
 
-      Given a file named "mypackage/schema.json" with:
+      Given a file named "myrecipe/schema.json" with:
       """
       {
         "id": "http://www.example.com/json-schema/v2/tpl/example-template",
@@ -107,17 +114,17 @@ Feature: Rodolfo CLI
         }
       }
       """
-      And a file named "mypackage/data.json" with:
+      And a file named "myrecipe/data.json" with:
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo render mypackage` interactively
-      And I pipe in the file "mypackage/data.json"
+      When I run `rodolfo render myrecipe` interactively
+      And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 2
       And the stdout should contain "did not contain a required property of 'country' in schema"
 
     Scenario: Generate a pdf with missing data which is not required on the json schema
-      Given a file named "mypackage/schema.json" with:
+      Given a file named "myrecipe/schema.json" with:
       """
       {
         "id": "http://www.example.com/json-schema/v2/tpl/example-template",
@@ -129,30 +136,38 @@ Feature: Rodolfo CLI
         }
       }
       """
-      And a file named "mypackage/template.rb" with:
+      And a file named "myrecipe/template.rb" with:
       """
       module Rodolfo
-        class Template < Prawn::Document
-          def initialize(data, options)
+        # A Rodolfo Prawn pdf generator
+        class Template
+          def initialize(data)
             @data = data
-            super options
           end
 
-          def render
-            text @data[:name]
-            text @data[:user][:name]
-            super
+          # Prawn config
+          def config
+            { }
+          end
+
+          def to_proc
+            data = @data
+
+            proc do
+              text @data[:name]
+              text @data[:user][:name]
+            end
           end
         end
       end
 
       """
-      And a file named "mypackage/data.json" with:
+      And a file named "myrecipe/data.json" with:
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo render mypackage` interactively
-      And I pipe in the file "mypackage/data.json"
+      When I run `rodolfo render myrecipe` interactively
+      And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 2
       And the stdout should contain "Missing or incorrect data, template can't be rendered"
 

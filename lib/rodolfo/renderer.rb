@@ -26,7 +26,7 @@ module Rodolfo
       @schema = JSONSchema.new File.join(@path, 'schema.json')
     end
 
-    # Get the package json schema
+    # Get the recipe json schema
     def json_schema
       @schema.to_s
     end
@@ -51,7 +51,8 @@ module Rodolfo
     # Render the template
     def render
       require File.join @path, 'template'
-      Rodolfo::Template.new(validated_data, info: pdf_meta).render
+      t = Rodolfo::Template.new(validated_data)
+      Prawn::Document.new(info: pdf_meta, **t.config, &t).render
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
       raise RenderError, [msg]
