@@ -6,23 +6,41 @@ Then(/^the file named "([^"]*)" should exist and be a valid pdf$/) do |name|
   step %(a file named "#{name}" should exist)
 
   file_path = File.join aruba.config.working_directory, name
-  pdf_content = File.read file_path
-  @text_analysis = PDF::Inspector::Text.analyze(pdf_content)
-  @page_analysis = PDF::Inspector::Page.analyze(pdf_content)
+  @reader = PDF::Reader.new file_path
 end
 
 Then(/^the pdf should include:$/) do |table|
   table.raw.each do |value|
-    expect(@text_analysis.strings.join(' ')).to include(value.first)
+    expect(@reader.pages.first.text).to include(value.first)
   end
 end
 
 Then(/^the pdf should contain (\d+) pages?$/) do |amount|
-  expect(@page_analysis.pages.size).to eq amount.to_i
+  expect(@reader.page_count).to eq amount.to_i
 end
 
 Then(/^the stdout should contain the generated pdf contents$/) do
   pdf_content = all_commands.map(&:stdout).join("\n")
-  @text_analysis = PDF::Inspector::Text.analyze(pdf_content)
-  @page_analysis = PDF::Inspector::Page.analyze(pdf_content)
+  f = StringIO.new
+  f.write pdf_content
+  @reader = PDF::Reader.new f
+end
+
+Then(/^the pdf should contain metadata$/) do
+  schema = {
+    description: 'Example Template',
+    id: 'http://www.example.com/json-schema/v2/tpl/example-template',
+    schema: 'http://json-schema.org/draft-04/schema#'
+  }
+  expect(@reader.info).to include(:CreationDate)
+  expect(@reader.info).to include(:Renderer)
+  expect(@reader.info).to include(JsonSchema: schema)
+end
+
+Given(/^a file example\.pdf$/) do
+  features_path = File.dirname(__dir__)
+  root_path = File.dirname(features_path)
+  filename = File.join(root_path, 'packages', 'example', 'example.pdf')
+  dest_folder = aruba.config.working_directory
+  FileUtils.cp(filename, aruba.config.working_directory)
 end

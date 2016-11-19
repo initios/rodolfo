@@ -1,9 +1,9 @@
 module Rodolfo
   # A Rodolfo Prawn pdf generator
   class Template < Prawn::Document
-    def initialize(data)
+    def initialize(data, options)
       @data = data
-      super
+      super options
     end
 
     def render

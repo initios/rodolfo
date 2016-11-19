@@ -1,6 +1,7 @@
 require 'thor'
 require_relative 'exceptions'
 require_relative 'meta'
+require_relative 'reader'
 require_relative 'renderer'
 
 module Rodolfo
@@ -20,6 +21,11 @@ module Rodolfo
     desc 'schema PACKAGE PATH', 'print the package json schema'
     def schema(package_path)
       puts Rodolfo::Renderer.new(package_path, {}).json_schema
+    end
+
+    desc 'read PDF', 'prints pdf metadata and rodolfo info'
+    def read(pdf)
+      puts Rodolfo::Reader.new(pdf).to_json
     end
 
     desc 'render PACKAGE PATH [--save-to file.pdf]', 'render a rodolfo package'

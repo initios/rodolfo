@@ -1,13 +1,13 @@
 Feature: Rodolfo CLI
     As a developer
-    I want to generate pdf reports from a simple cli
-    In order to maintain them isolated from the system
+    I want to generate pdf reports from the cli
+    In order to be able to use it the reports from any programming language
 
     Background:
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example Template"
       }
@@ -16,9 +16,9 @@ Feature: Rodolfo CLI
       """
       module Rodolfo
         class Template < Prawn::Document
-          def initialize(data)
+          def initialize(data, options)
             @data = data
-            super
+            super options
           end
 
           def render
@@ -56,6 +56,7 @@ Feature: Rodolfo CLI
       And the pdf should include:
       | Hello World |
       And the pdf should contain 1 page
+      And the pdf should contain metadata
 
     Scenario: Generate a pdf on a file
       When I run `rodolfo render mypackage --save-to output.pdf` interactively
@@ -70,7 +71,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": ["name", "country"],
@@ -96,7 +97,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": [],
@@ -119,7 +120,7 @@ Feature: Rodolfo CLI
       Given a file named "mypackage/schema.json" with:
       """
       {
-        "id": "http://json-schema.org/draft-04/schema#",
+        "id": "http://www.example.com/json-schema/v2/tpl/example-template",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "description": "Example",
         "required": ["name"],
@@ -132,9 +133,9 @@ Feature: Rodolfo CLI
       """
       module Rodolfo
         class Template < Prawn::Document
-          def initialize(data)
+          def initialize(data, options)
             @data = data
-            super
+            super options
           end
 
           def render
@@ -154,3 +155,8 @@ Feature: Rodolfo CLI
       And I pipe in the file "mypackage/data.json"
       Then the exit status should be 2
       And the stdout should contain "Missing or incorrect data, template can't be rendered"
+
+    Scenario: Getting pdf info
+      Given a file example.pdf
+      When I run `rodolfo read example.pdf`
+      Then the exit status should be 0

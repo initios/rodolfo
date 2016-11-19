@@ -41,6 +41,7 @@ Possible responses:
 - status code ?. Unexpected failure
 
 Check the [cucumber html report](https://cdn.rawgit.com/initios/rodolfo/master/docs/features.html) for more usage examples
+Or run rodolfo without args too see the help
 
 ## Prawn
 
@@ -60,15 +61,12 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ### [Unreleased]
 ### Added
-- Huge refactoring. Cli now uses Thor
-- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
-- --skip-validation flag removed. Validation should be always performed
+- Read command option. It prints a pdf metadata
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
+- New --save-to option to save pdf files to a file instead to stdout
+- Templates now requires an `options` arguments (see packages/example/template.rb)
 - Add schema default values support
-- Add --save-to option to save pdf files to a file instead to stdout
-
-
   ```bash
   // Schema
   "properties": [
@@ -83,6 +81,16 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
   Will transform the payload to
   {"msg": "default msg"}
   ```
+
+
+### Modified
+- The cli now uses Thor
+- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
+
+
+### Removed
+
+- --skip-validation flag removed. Validation should be always performed
 
 
 ### [1.0.0] - 2016-10-31

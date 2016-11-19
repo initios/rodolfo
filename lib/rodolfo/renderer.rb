@@ -36,11 +36,22 @@ module Rodolfo
       @schema.validate(@data)
     end
 
+    def pdf_meta
+      schema_meta = @schema.to_h
+
+      { CreationDate: Time.now.iso8601,
+        Renderer: "Rodolfo v#{VERSION}",
+        JsonSchema: {
+          description: schema_meta['description'],
+          id: schema_meta['id'],
+          schema: schema_meta['$schema']
+        } }
+    end
+
     # Render the template
     def render
       require File.join @path, 'template'
-      Rodolfo::Template.new(validated_data).render
-
+      Rodolfo::Template.new(validated_data, info: pdf_meta).render
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
       raise RenderError, [msg]
