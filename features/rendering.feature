@@ -1,7 +1,7 @@
 Feature: Rodolfo CLI
     As a developer
-    I want to generate pdf reports from a simple cli
-    In order to maintain them isolated from the system
+    I want to generate pdf reports from the cli
+    In order to be able to use it the reports from any programming language
 
     Background:
       Given a file named "mypackage/schema.json" with:
