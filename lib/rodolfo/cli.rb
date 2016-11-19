@@ -5,6 +5,25 @@ require_relative 'reader'
 require_relative 'renderer'
 
 module Rodolfo
+  # Rodolfo recipe generator
+  class Generator < Thor::Group
+    argument :name, type: :string, desc: 'Recipe name'
+
+    include Thor::Actions
+
+     def one
+      puts 1
+    end
+
+    def two
+      puts 2
+    end
+
+    def three
+      puts 3
+    end
+  end
+
   # Rodolfo CLI
   class CLI < Thor
     def self.exit_on_failure?
@@ -48,5 +67,7 @@ module Rodolfo
       puts "Rodolfo v#{Rodolfo::VERSION}"
       super(*args, &block)
     end
+
+    register(Generator, 'generator', 'generator NAME', 'Scaffold new recipe')
   end
 end
