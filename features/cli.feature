@@ -160,3 +160,11 @@ Feature: Rodolfo CLI
       Given a file example.pdf
       When I run `rodolfo read example.pdf`
       Then the exit status should be 0
+
+    Scenario: Scaffold a recipe
+      When I run `rodolfo g new-recipe "an example recipe"`
+      Then the exit status should be 0
+      And the directory "new-recipe" should exist
+      And the file "new-recipe/data.json" should exist
+      And the file "new-recipe/schema.json" should exist
+      And the file "new-recipe/template.rb" should exist

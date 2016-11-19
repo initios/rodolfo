@@ -13,10 +13,11 @@ module Rodolfo
     include Thor::Actions
 
     def self.source_root
-      File.join(File.expand_path('.', Dir.pwd), 'templates')
+      File.join __dir__, 'templates'
     end
 
     def one
+      puts Generator.source_root
       empty_directory(folder)
     end
 
