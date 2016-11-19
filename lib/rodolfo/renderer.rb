@@ -26,7 +26,7 @@ module Rodolfo
       @schema = JSONSchema.new File.join(@path, 'schema.json')
     end
 
-    # Get the package json schema
+    # Get the recipe json schema
     def json_schema
       @schema.to_s
     end

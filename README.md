@@ -10,10 +10,10 @@ Rodolfo is a little binary to create pdfs with ease using the powerful Prawn lib
 The main objective is to be able to use Rodolfo on any project / language as a tool
 to create all of your pdf documents.
 
-All you need to do is create a package folder with the following files:
+All you need to do is create a recipe folder with the following files:
 
   - schema.json – a json schema with the required fields, data-types, etc (optional)
-  - template.rb – a ruby prawn template (see packages folder for examples)
+  - template.rb – a ruby prawn template (see recipes folder for examples)
   - data.json - as a valid data example and to test your template (optional)
 
 Check the templates folder for examples.
@@ -32,14 +32,14 @@ gem install rodolfo
 ## Quick Start
 
 ```
-rodolfo g new-package "hello world package"
-rodolfo render new-package --save-to hello.pdf
+rodolfo g new-recipe "hello world recipe"
+rodolfo render new-recipe --save-to hello.pdf
 ```
 
 ## Usage
 
 ```bash
-cat packages/example/data.json | rodolfo render packages/example > output.pdf
+cat recipes/example/data.json | rodolfo render recipes/example > output.pdf
 ```
 
 Possible responses:
@@ -52,7 +52,7 @@ Or run rodolfo without args too see the help
 
 ## Prawn
 
-Rodolfo loads the following Prawn packages:
+Rodolfo loads the following Prawn recipes:
 
 ```bash
 require 'prawn'
@@ -73,7 +73,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
 - New --save-to option to save pdf files to a file instead to stdout
-- Templates now requires an `options` arguments (see packages/example/template.rb)
+- Templates now requires an `options` arguments (see recipes/example/template.rb)
 - Add schema default values support
   ```bash
   // Schema
@@ -93,7 +93,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ### Modified
 - The cli now uses Thor
-- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
+- Renamed `rodolfo -p recipe` to `rodolfo render recipe` etc. Check the docs
 - Rodolfo templates now uses simple ruby classes, removed Prawn inheritance
 
 
@@ -111,7 +111,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 - Rodolfo now is bundled with Prawn and another dependencies
 
 ### Breaking changes
-- Refactor -t and --template to -p and --package
+- Refactor -t and --template to -p and --recipe
 
 ### [0.0.5] - 2016-10-19
 ### Added

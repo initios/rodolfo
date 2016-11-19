@@ -2,9 +2,9 @@ require 'rodolfo/renderer'
 require 'rspec/json_expectations'
 
 root_path = File.dirname __dir__
-example_template_path = File.join root_path, 'packages', 'example'
+example_template_path = File.join root_path, 'recipes', 'example'
 
-require File.join(root_path, 'packages', 'example', 'template')
+require File.join(root_path, 'recipes', 'example', 'template')
 
 describe Rodolfo::Renderer do
   subject(:renderer) { Rodolfo::Renderer.new example_template_path, {} }

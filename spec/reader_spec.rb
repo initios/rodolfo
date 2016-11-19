@@ -2,7 +2,7 @@ require 'rodolfo/reader'
 require 'rspec/json_expectations'
 
 root_path = File.dirname __dir__
-pdf_file_path = File.join(root_path, 'packages', 'example', 'example.pdf')
+pdf_file_path = File.join(root_path, 'recipes', 'example', 'example.pdf')
 
 describe Rodolfo::Reader do
   it 'returns pdf info as json' do

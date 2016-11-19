@@ -1,5 +1,5 @@
 module Rodolfo
-  # Package rendering failed
+  # Template rendering failed
   class RenderError < RuntimeError
     attr_reader :errors
 
