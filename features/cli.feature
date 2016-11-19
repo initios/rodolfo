@@ -156,7 +156,6 @@ Feature: Rodolfo CLI
       Then the exit status should be 2
       And the stdout should contain "Missing or incorrect data, template can't be rendered"
 
-    @wip
     Scenario: Getting pdf info
       When I run `rodolfo render mypackage --save-to test.pdf` interactively
       And I pipe in the file "mypackage/data.json"
