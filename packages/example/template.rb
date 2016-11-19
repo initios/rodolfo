@@ -7,9 +7,7 @@ module Rodolfo
 
     # Prawn config
     def config
-      {
-        page_layout: :portrait
-      }
+      { page_layout: :portrait }
     end
 
     def to_proc
