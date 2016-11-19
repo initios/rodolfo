@@ -66,7 +66,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
-### [Unreleased]
+### [2.1.0] - 2016-11-19
 ### Added
 - Add recipe scaffolding command
 - Read command option. It prints a pdf metadata
