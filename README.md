@@ -61,16 +61,11 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ### [Unreleased]
 ### Added
-- Huge refactoring. Cli now uses Thor
-- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
-- --skip-validation flag removed. Validation should be always performed
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
-- Add schema default values support
-- Add --save-to option to save pdf files to a file instead to stdout
+- New --save-to option to save pdf files to a file instead to stdout
 - Templates now requires an `options` arguments (see packages/example/template.rb)
-
-
+- Add schema default values support
   ```bash
   // Schema
   "properties": [
@@ -85,6 +80,16 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
   Will transform the payload to
   {"msg": "default msg"}
   ```
+
+
+### Modified
+- The cli now uses Thor
+- Renamed `rodolfo -p package` to `rodolfo render package` etc. Check the docs
+
+
+### Removed
+
+- --skip-validation flag removed. Validation should be always performed
 
 
 ### [1.0.0] - 2016-10-31
