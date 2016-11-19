@@ -15,19 +15,26 @@ Feature: Rodolfo CLI
       And a file named "mypackage/template.rb" with:
       """
       module Rodolfo
-        class Template < Prawn::Document
-          def initialize(data, options)
+        # A Rodolfo Prawn pdf generator
+        class Template
+          def initialize(data)
             @data = data
-            super options
           end
 
-          def render
-            text @data[:msg]
-            super
+          # Prawn config
+          def config
+            { }
+          end
+
+          def to_proc
+            data = @data
+
+            proc do
+              text data[:msg]
+            end
           end
         end
       end
-
       """
       And a file named "mypackage/data.json" with:
       """
@@ -132,16 +139,24 @@ Feature: Rodolfo CLI
       And a file named "mypackage/template.rb" with:
       """
       module Rodolfo
-        class Template < Prawn::Document
-          def initialize(data, options)
+        # A Rodolfo Prawn pdf generator
+        class Template
+          def initialize(data)
             @data = data
-            super options
           end
 
-          def render
-            text @data[:name]
-            text @data[:user][:name]
-            super
+          # Prawn config
+          def config
+            { }
+          end
+
+          def to_proc
+            data = @data
+
+            proc do
+              text @data[:name]
+              text @data[:user][:name]
+            end
           end
         end
       end
