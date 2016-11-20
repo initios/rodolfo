@@ -73,7 +73,6 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 - --strict option enabled. Any missing field will make validation to fail
 - Rescue some unexpected errors
 - New --save-to option to save pdf files to a file instead to stdout
-- Templates now requires an `options` arguments (see recipes/example/template.rb)
 - Add schema default values support
   ```bash
   // Schema
