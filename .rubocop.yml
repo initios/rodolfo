@@ -6,6 +6,7 @@ AllCops:
 
   Exclude:
     - Rakefile
+    - lib/rodolfo/templates/*
     - spec/spec_helper.rb
     - tmp/**/*
 

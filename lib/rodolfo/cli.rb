@@ -36,7 +36,8 @@ module Rodolfo
     def five
       puts
       puts 'Recipe ready! Try it with:'
-      puts "cat #{folder}/data.json | rodolfo render #{folder} --save-to #{folder}.pdf"
+      puts "cat #{folder}/data.json | rodolfo render #{folder}" \
+           " --save-to #{folder}.pdf"
     end
   end
 
