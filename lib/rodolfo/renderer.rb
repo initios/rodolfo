@@ -51,8 +51,7 @@ module Rodolfo
     # Render the template
     def render
       require File.join @path, 'template'
-      t = Rodolfo::Template.new(validated_data)
-      Prawn::Document.new(info: pdf_meta, **t.config, &t).render
+      Rodolfo::Template.new(validated_data, info: pdf_meta).render
     rescue NoMethodError
       msg = 'Missing or incorrect data, template can\'t be rendered'
       raise RenderError, [msg]
