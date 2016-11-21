@@ -1,21 +1,14 @@
 module Rodolfo
-  # A Rodolfo Prawn pdf generator
-  class Template
-    def initialize(data)
+  # Example
+  class Template < Prawn::Document
+    def initialize(data, options = {})
       @data = data
+      super(page_size: 'A4', page_layout: :portrait, **options)
     end
 
-    # Prawn config
-    def config
-      { page_layout: :portrait }
-    end
-
-    def to_proc
-      data = @data
-
-      proc do
-        text data[:msg]
-      end
+    def render
+      text @data[:msg]
+      super
     end
   end
 end

@@ -66,6 +66,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [2.2.0] - 2016-11-21
+### Refactoring
+- Templates refactored again
+
 ### [2.1.0] - 2016-11-19
 ### Added
 - Add recipe scaffolding command

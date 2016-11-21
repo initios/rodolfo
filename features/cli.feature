@@ -15,26 +15,20 @@ Feature: Rodolfo CLI
       And a file named "myrecipe/template.rb" with:
       """
       module Rodolfo
-        # A Rodolfo Prawn pdf generator
-        class Template
-          def initialize(data)
+        # Example
+        class Template < Prawn::Document
+          def initialize(data, options = {})
             @data = data
+            super page_size: 'A4', page_layout: :portrait, **options
           end
 
-          # Prawn config
-          def config
-            { }
-          end
-
-          def to_proc
-            data = @data
-
-            proc do
-              text data[:msg]
-            end
+          def render
+            text @data[:msg]
+            super
           end
         end
       end
+
       """
       And a file named "myrecipe/data.json" with:
       """
@@ -139,28 +133,20 @@ Feature: Rodolfo CLI
       And a file named "myrecipe/template.rb" with:
       """
       module Rodolfo
-        # A Rodolfo Prawn pdf generator
-        class Template
-          def initialize(data)
+        # Example
+        class Template < Prawn::Document
+          def initialize(data, options = {})
             @data = data
+            super page_size: 'A4', page_layout: :portrait, **options
           end
 
-          # Prawn config
-          def config
-            { }
-          end
-
-          def to_proc
-            data = @data
-
-            proc do
-              text @data[:name]
-              text @data[:user][:name]
-            end
+          def render
+            text @data[:msg]
+            text @data[:user][:name]
+            super
           end
         end
       end
-
       """
       And a file named "myrecipe/data.json" with:
       """

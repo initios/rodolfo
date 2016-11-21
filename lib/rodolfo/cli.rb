@@ -26,7 +26,7 @@ module Rodolfo
     end
 
     def three
-      copy_file('template.tt', "#{folder}/template.rb")
+      template('template.tt', "#{folder}/template.rb")
     end
 
     def four
