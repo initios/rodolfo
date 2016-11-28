@@ -66,6 +66,13 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [2.2.1] - 2016-11-28
+### Added
+- Payload is added to PDF metadata for easier debugging bad rendered PDFs.
+Use rodolfo read file.pdf to get the payload which made that PDF and use that
+to improve your template and schema.
+
+
 ### [2.2.0] - 2016-11-21
 ### Refactoring
 - Templates refactored again
