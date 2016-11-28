@@ -161,6 +161,7 @@ Feature: Rodolfo CLI
       Given a file example.pdf
       When I run `rodolfo read example.pdf`
       Then the exit status should be 0
+      And the stdout should contain "CreationDate"
 
     Scenario: Scaffold a recipe
       When I run `rodolfo g new-recipe "an example recipe"`

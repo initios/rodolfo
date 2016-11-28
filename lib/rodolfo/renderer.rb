@@ -40,12 +40,14 @@ module Rodolfo
       schema_meta = @schema.to_h
 
       { CreationDate: Time.now.iso8601,
-        Renderer: "Rodolfo v#{VERSION}",
         JsonSchema: {
           description: schema_meta['description'],
           id: schema_meta['id'],
           schema: schema_meta['$schema']
-        } }
+        },
+        Payload: validated_data,
+        Renderer: "Rodolfo v#{VERSION}"
+      }
     end
 
     # Render the template
