@@ -66,7 +66,7 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
-### Unreleased
+### [2.3.0] - 2017-09-12
 ### Updated
 
 - Full JSON schema is stored on the PDF instead of partial data
