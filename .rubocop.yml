@@ -5,6 +5,7 @@ AllCops:
     - 'lib/**/*'
 
   Exclude:
+    - Gemfile
     - Rakefile
     - lib/rodolfo/templates/*
     - spec/spec_helper.rb

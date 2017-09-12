@@ -46,8 +46,7 @@ module Rodolfo
           schema: schema_meta['$schema']
         },
         Payload: validated_data,
-        Renderer: "Rodolfo v#{VERSION}"
-      }
+        Renderer: "Rodolfo v#{VERSION}" }
     end
 
     # Render the template

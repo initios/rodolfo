@@ -47,7 +47,7 @@ module Rodolfo
       true
     end
 
-    map %w(--version -v) => :__print_version
+    map %w[--version -v] => :__print_version
 
     desc '--version, -v', 'print the version'
     def __print_version
