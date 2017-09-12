@@ -66,6 +66,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [2.4.1] - 2017-09-12
+
+- Downgrade json-schema! Bugs with ruby 2.0
+
 ### [2.4.0] - 2017-09-12
 
 - Downgrade prawn to  2.1.0 in order to recover ruby 2.0 compatibility

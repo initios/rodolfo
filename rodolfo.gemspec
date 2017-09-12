@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = '>= 2.0'
 
-  s.add_runtime_dependency 'json-schema', '~> 2.8', '>= 2.8.0'
+  s.add_runtime_dependency 'json-schema', '~> 2.7'
   s.add_runtime_dependency 'pdf-reader', '~> 1.4.0', '>= 1.4.0'
   s.add_runtime_dependency 'prawn', '~> 2.1.0', '>= 2.1.0'
   s.add_runtime_dependency 'prawn-table', '~> 0.2.2'
