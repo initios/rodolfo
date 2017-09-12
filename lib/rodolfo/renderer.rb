@@ -37,10 +37,8 @@ module Rodolfo
     end
 
     def pdf_meta
-      schema_meta = @schema.to_h
-
       { CreationDate: Time.now.iso8601,
-        JsonSchema: schema_meta,
+        JsonSchema: @schema.to_h,
         Payload: validated_data,
         Renderer: "Rodolfo v#{VERSION}" }
     end
