@@ -76,7 +76,7 @@ module Rodolfo
       file_name ? File.write(file_name, content) : STDOUT.write(content)
       exit 0
     rescue RenderError, SchemaValidationError => error
-      STDOUT.write error.errors
+      STDOUT.write error.errors.to_json
       exit 2
     end
 
