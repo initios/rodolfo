@@ -27,14 +27,9 @@ Then(/^the stdout should contain the generated pdf contents$/) do
 end
 
 Then(/^the pdf should contain metadata$/) do
-  schema = {
-    description: 'Example Template',
-    id: 'http://www.example.com/json-schema/v2/tpl/example-template',
-    schema: 'http://json-schema.org/draft-04/schema#'
-  }
   expect(@reader.info).to include(:CreationDate)
   expect(@reader.info).to include(:Renderer)
-  expect(@reader.info).to include(JsonSchema: schema)
+  expect(@reader.info[:JsonSchema]).to include(description: 'Example Template')
 end
 
 Given(/^a file example\.pdf$/) do

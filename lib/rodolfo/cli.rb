@@ -47,7 +47,7 @@ module Rodolfo
       true
     end
 
-    map %w(--version -v) => :__print_version
+    map %w[--version -v] => :__print_version
 
     desc '--version, -v', 'print the version'
     def __print_version
@@ -76,7 +76,7 @@ module Rodolfo
       file_name ? File.write(file_name, content) : STDOUT.write(content)
       exit 0
     rescue RenderError, SchemaValidationError => error
-      STDOUT.write error.errors
+      STDOUT.write error.errors.to_json
       exit 2
     end
 

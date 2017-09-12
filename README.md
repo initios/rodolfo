@@ -66,6 +66,22 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### Unreleased
+### Updated
+
+- Full JSON schema is stored on the PDF instead of partial data
+- Upgrade prawn to 2.2.0 (Minimum ruby is now 2.1)
+- Upgrade json-schema to 2.8.0
+
+### Fixed
+
+- JSON schema validation errors are now returned as JSON
+
+### Removed
+
+- Ruby 2.0 compatibility, now minimum is 2.1
+
+
 ### [2.2.1] - 2016-11-28
 ### Added
 - Payload is added to PDF metadata for easier debugging bad rendered PDFs.
