@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.executables << 'rodolfo'
   s.homepage    = 'https://github.com/initios/rodolfo'
   s.license     = 'MIT'
-  s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.0'
 
   s.add_runtime_dependency 'json-schema', '~> 2.8', '>= 2.8.0'
   s.add_runtime_dependency 'pdf-reader', '~> 1.4.0', '>= 1.4.0'
