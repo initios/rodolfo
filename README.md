@@ -66,6 +66,10 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [2.3.1] - 2017-09-12
+
+- Update gemspec
+
 ### [2.3.0] - 2017-09-12
 ### Updated
 
