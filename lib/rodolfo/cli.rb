@@ -68,9 +68,7 @@ module Rodolfo
     method_option 'save-to', type: :string, aliases: '-s'
     def render(recipe_path)
       data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
-      recipe = Rodolfo::Renderer.new recipe_path, data
-
-      content = recipe.render
+      content = Rodolfo::Renderer.new(recipe_path, data).render
 
       file_name = options['save-to']
       file_name ? File.write(file_name, content) : STDOUT.write(content)

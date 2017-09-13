@@ -13,8 +13,7 @@ module Rodolfo
     # Validate the json schema
     # May raise a SchemaValidationError
     def validate(data)
-      opts = { errors_as_objects: true, insert_defaults: true,
-               strict: true }
+      opts = { insert_defaults: true, strict: true }
       errors = JSON::Validator.fully_validate json, data, opts
       raise SchemaValidationError, errors unless errors.empty?
       data
