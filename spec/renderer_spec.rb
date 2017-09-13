@@ -11,7 +11,7 @@ describe Rodolfo::Renderer do
 
   it 'returns a json schema' do
     schema = renderer.json_schema
-    expect(schema).to include_json(description: 'Example Template')
+    expect(schema).to include_json(description: 'An example recipe')
   end
 
   it 'adds default values for fields that are not present' do
