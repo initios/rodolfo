@@ -66,6 +66,11 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### [2.4.2] - 2017-09-13
+
+- Errors are returned as a list instead of objects
+- Remove Gemfile.lock
+
 ### [2.4.1] - 2017-09-12
 
 - Downgrade json-schema! Bugs with ruby 2.0
