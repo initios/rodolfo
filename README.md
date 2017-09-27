@@ -66,6 +66,11 @@ Ask to include any other on the [issue tracker](https://github.com/initios/rodol
 
 ## Changelog
 
+### Unreleased
+
+- Pass --strict option to enable strict mode (extra fields not allowed and all fields are required)
+Off by default now
+
 ### [2.4.2] - 2017-09-13
 
 - Errors are returned as a list instead of objects
