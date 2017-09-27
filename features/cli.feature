@@ -68,7 +68,7 @@ Feature: Rodolfo CLI
       | Hello World |
       And the pdf should contain 1 page
 
-    Scenario: Generate a pdf with missing field required on json schema
+    Scenario: Generate a pdf with missing field required on json schema and strict mode
       Given a file named "myrecipe/schema.json" with:
       """
       {
@@ -86,7 +86,7 @@ Feature: Rodolfo CLI
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo render myrecipe` interactively
+      When I run `rodolfo render myrecipe --strict` interactively
       And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 2
       And the stdout should contain "did not contain a required property of 'country' in schema"
@@ -112,12 +112,12 @@ Feature: Rodolfo CLI
       """
       {"name": "Carlos"}
       """
-      When I run `rodolfo render myrecipe` interactively
+      When I run `rodolfo render myrecipe --strict` interactively
       And I pipe in the file "myrecipe/data.json"
       Then the exit status should be 2
       And the stdout should contain "did not contain a required property of 'country' in schema"
 
-    Scenario: Generate a pdf with missing data which is not required on the json schema
+    Scenario: Generate a pdf with missing data which is not required on the json schema with strict mode
       Given a file named "myrecipe/schema.json" with:
       """
       {
