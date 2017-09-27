@@ -6,14 +6,15 @@ require_relative 'exceptions'
 module Rodolfo
   # Rodolfo Recipe JSON Schema
   class JSONSchema
-    def initialize(path)
+    def initialize(path, strict = false)
       @path = path
+      @strict = strict
     end
 
     # Validate the json schema
     # May raise a SchemaValidationError
     def validate(data)
-      opts = { insert_defaults: true, strict: true }
+      opts = { insert_defaults: true, strict: @strict }
       errors = JSON::Validator.fully_validate json, data, opts
       raise SchemaValidationError, errors unless errors.empty?
       data

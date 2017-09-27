@@ -64,13 +64,17 @@ module Rodolfo
       puts Rodolfo::Reader.new(pdf).to_json
     end
 
-    desc 'render RECIPE PATH [--save-to file.pdf]', 'render a rodolfo recipe'
+    desc 'render RECIPE PATH [--save-to file.pdf] [--strict]',
+         'render a rodolfo recipe'
     method_option 'save-to', type: :string, aliases: '-s'
+    method_option 'strict', type: :boolean, default: false, aliases: '-t'
     def render(recipe_path)
-      data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
-      content = Rodolfo::Renderer.new(recipe_path, data).render
-
       file_name = options['save-to']
+      strict = options['strict']
+
+      data = $stdin.tty? ? {} : JSON.parse($stdin.read, symbolize_names: true)
+      content = Rodolfo::Renderer.new(recipe_path, data, strict).render
+
       file_name ? File.write(file_name, content) : STDOUT.write(content)
       exit 0
     rescue RenderError, SchemaValidationError => error

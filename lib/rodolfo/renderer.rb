@@ -20,10 +20,11 @@ module Rodolfo
   class Renderer
     attr_reader :data, :validation_errors
 
-    def initialize(path, data)
+    def initialize(path, data, strict = false)
       @path = Pathname.new(path).absolute? ? path : File.join(Dir.pwd, path)
       @data = data
-      @schema = JSONSchema.new File.join(@path, 'schema.json')
+      schema_path = File.join(@path, 'schema.json')
+      @schema = JSONSchema.new schema_path, strict
     end
 
     # Get the recipe json schema
